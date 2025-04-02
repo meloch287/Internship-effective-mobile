@@ -115,7 +115,7 @@ GET http://localhost:8000/api/orders/?status=paid
   - `order_detail.html` — Детальная информация и удаление заказа.
   - `revenue_report.html` — Отчет по выручке.
 
-### API (если используется)
+### API
 - `api/serializers.py` — Сериализаторы для API.
 - `api/views.py` — API-эндпоинты для работы с заказами.
 - `api/urls.py` — Маршруты API.
