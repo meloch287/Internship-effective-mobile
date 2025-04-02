@@ -1,0 +1,1 @@
+# Internship-effective-mobile
