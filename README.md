@@ -35,7 +35,6 @@
 
 #### Добавление заказа
 
-- URL: ```POST /api/orders/```
 -Параметры (JSON):
 - ```table_number``` (int) — номер стола (обязательный)
 - ```items``` (JSON) — список блюд с ценами (например, ```[{"name": "Салат", "price": 5.99}])``` (обязательный)
@@ -58,14 +57,12 @@
 }
 ```
 #### Удаление заказа
-- URL: ```DELETE /api/orders/{id}/```
 - Параметры: ```id``` — идентификатор заказа (обязательный)
 - Пример запроса:
 ```
 DELETE http://localhost:8000/api/orders/1/
 ```
 #### Поиск и отображение заказов
-- URL: ```GET /api/orders/```
 - Параметры фильтрации (опционально):
 - ```table_number``` (int) — номер стола
 - ```status (string)``` — статус заказа (например, ```waiting```, ```ready```, ```paid```)
@@ -75,7 +72,6 @@ GET http://localhost:8000/api/orders/?status=paid
 ```
 
 #### Изменение статуса заказа (и редактирование)
-- URL: ```PATCH /api/orders/{id}/```
 - Параметры:
 Обновляемые поля, например, ```status```
 - Пример запроса:
@@ -86,7 +82,6 @@ GET http://localhost:8000/api/orders/?status=paid
 ```
 
 #### Расчет выручки за смену
-- URL: ```GET /api/revenue/``` 
 - Описание: Возвращает общую сумму выручки по заказам со статусом «оплачено».
 - Пример ответа:
 ```
@@ -103,22 +98,26 @@ GET http://localhost:8000/api/orders/?status=paid
   - `urls.py` — Глобальные маршруты.
   - `wsgi.py` — Конфигурация для развертывания.
 
-### Приложение `orders`
-- `models.py` — Определение модели заказа `Order`.
-- `views.py` — Обработчики запросов (CRUD, поиск, изменение статуса, расчет выручки).
-- `urls.py` — Маршруты для управления заказами.
-- `forms.py` — Django-формы для заказов.
-- `admin.py` — Подключение модели `Order` к админ-панели.
-- `templates/orders/` — Шаблоны интерфейса заказов:
-  - `order_list.html` — Список заказов и поиск.
-  - `order_form.html` — Форма создания и редактирования.
-  - `order_detail.html` — Детальная информация и удаление заказа.
-  - `revenue_report.html` — Отчет по выручке.
-
-### API
-- `api/serializers.py` — Сериализаторы для API.
-- `api/views.py` — API-эндпоинты для работы с заказами.
-- `api/urls.py` — Маршруты API.
+### Orders директория
+- `orders/`
+  - `admin.py`
+  - `apps.py`
+  - `forms.py`
+  - `models.py`
+  - `urls.py`
+  - `views.py`
+  - `migrations/`
+       - `__init__.py`
+  - `templates/`
+       - `base.html`
+       - `orders/`
+            - `order_confirm_delete.html`
+            - `order_form.html`
+            - `order_list.html`
+            - `order_update_status.html`
+  - `static/`
+     - `css/`
+          - `stile.css`   
 
 ### Дополнительно
 - `requirements.txt` — Список зависимостей (Django, DRF и др.).
