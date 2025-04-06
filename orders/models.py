@@ -20,3 +20,19 @@ class Order(models.Model):
         
     def __str__(self):
         return f"Order #{self.id} for Table {self.table_number}"
+
+
+class MenuItem(models.Model):
+    CATEGORY_CHOICES = [
+        ('snack', 'Закуски'),
+        ('drink', 'Напитки'),
+        # и т.д.
+    ]
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.price}₽)"
+
