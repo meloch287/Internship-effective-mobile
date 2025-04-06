@@ -161,7 +161,7 @@ GET http://localhost:8000/api/orders/?status=paid
 - `models.py` — Модели данных (например, модель Order).
 - `urls.py` — Локальные маршруты приложения.
 - `views.py` — Логика представлений (веб-интерфейс и API).
--` migrations/` — Миграции базы данных.
+- `migrations/` — Миграции базы данных.
 - `templates/` — HTML-шаблоны:
      - `base.html` — Базовый шаблон.
      - `orders/` — Шаблоны для заказов (например, order_list.html, order_form.html).
