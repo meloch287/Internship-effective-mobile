@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Order
 from .forms import OrderForm
+from .models import MenuItem
 
 def order_list(request):
     orders = Order.objects.all()
@@ -17,6 +18,7 @@ def order_create(request):
     else:
         form = OrderForm()
     return render(request, 'orders/order_form.html', {'form': form})
+
 
 def order_delete(request, order_id):
     order = get_object_or_404(Order, id=order_id)
@@ -41,3 +43,17 @@ def order_update_status(request, order_id):
         'order': order,
         'status_choices': Order.STATUS_CHOICES
     })
+
+def menu_list_api(request):
+    menu_items = MenuItem.objects.all()
+    data = [
+        {
+            "id": item.id,
+            "name": item.name,
+            "price": float(item.price),
+            "category": item.get_category_display(),
+            "description": item.description,
+        }
+        for item in menu_items
+    ]
+    return JsonResponse(data, safe=False)
