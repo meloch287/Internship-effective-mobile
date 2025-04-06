@@ -1,0 +1,19 @@
+<!-- templates/orders/order_update_status.html -->
+{% extends 'base.html' %}
+
+{% block title %}Изменение статуса заказа{% endblock %}
+
+{% block content %}
+  <h2>Изменить статус заказа №{{ order.id }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="status">Новый статус:</label>
+    <select name="status" id="status">
+      {% for key, value in status_choices %}
+        <option value="{{ key }}" {% if order.status == key %}selected{% endif %}>{{ value }}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="Обновить статус">
+  </form>
+  <a href="{% url 'order_list' %}">Вернуться к списку заказов</a>
+{% endblock %}

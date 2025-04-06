@@ -1,0 +1,45 @@
+<!-- templates/orders/order_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Список заказов{% endblock %}
+
+{% block content %}
+  <h2>Список заказов</h2>
+  {% if orders %}
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Номер стола</th>
+          <th>Блюда</th>
+          <th>Общая стоимость</th>
+          <th>Статус</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>{{ order.id }}</td>
+          <td>{{ order.table_number }}</td>
+          <td>
+            <ul>
+              {% for item in order.items %}
+                <li>{{ item.name }}: {{ item.price }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>{{ order.total_price }}</td>
+          <td>{{ order.get_status_display }}</td>
+          <td>
+            <a href="{% url 'order_update_status' order.id %}">Изменить статус</a> |
+            <a href="{% url 'order_delete' order.id %}">Удалить</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Заказы отсутствуют.</p>
+  {% endif %}
+{% endblock %}

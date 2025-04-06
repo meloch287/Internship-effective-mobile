@@ -1,0 +1,13 @@
+<!-- templates/orders/order_form.html -->
+{% extends 'base.html' %}
+
+{% block title %}Новый заказ{% endblock %}
+
+{% block content %}
+  <h2>Добавить заказ</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Сохранить заказ">
+  </form>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!-- templates/orders/order_confirm_delete.html -->
+{% extends 'base.html' %}
+
+{% block title %}Удаление заказа{% endblock %}
+
+{% block content %}
+  <h2>Удалить заказ №{{ order.id }}</h2>
+  <p>Вы уверены, что хотите удалить этот заказ?</p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Да, удалить">
+  </form>
+  <a href="{% url 'order_list' %}">Отмена</a>
+{% endblock %}

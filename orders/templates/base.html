@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Система управления заказами{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Кафе "Вкусные заказы"</h1>
+      <nav>
+        <a href="{% url 'order_list' %}">Список заказов</a>
+        <a href="{% url 'order_create' %}">Новый заказ</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    {% block content %}
+    {% endblock %}
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Кафе "Вкусные заказы". Все права защищены.</p>
+    </div>
+  </footer>
+</body>
+</html>
